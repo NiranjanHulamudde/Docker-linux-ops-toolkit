@@ -13,7 +13,7 @@ A Dockerized Linux menu-driven toolkit built with Bash.
 ## How to Run
 
 Build the image:
-docker build -t linux-ops-toolkit .
+docker build -t Linux-ops-toolkit .
 
 Run the container:
-docker run -it linux-ops-toolkit
+docker run -it Linux-ops-toolkit
