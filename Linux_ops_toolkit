@@ -1,0 +1,94 @@
+#!/bin/bash
+#This one provides more in detail menu options on system and stimulating a real world scenario.
+
+while true;
+do
+
+
+echo "====== Linux Ops Toolkit ======"
+echo
+echo "1. Process monitor"
+echo
+echo "2. Disk usage alert"
+echo
+echo "3. User Audit"
+echo 
+echo "4. Log Analyzer"
+echo 
+echo "5. Backup Directory"
+echo
+echo "6. Generate Report"
+echo 
+echo "7. Exit"
+echo
+
+read choice 
+case $choice in
+	
+	1)
+	echo "select one of the following"
+	echo "1 = Show top ten cpu consuming processes"
+	echo "2 = Search process by name"
+	echo "3 = Kill process by PID"
+	
+read option 
+case $option in
+
+	1)ps aux --sort=-%cpu | head;;
+
+	2)echo "Please enter the name of the service"
+	read service
+	ps aux | grep $service ;;
+
+	3)echo "Please enter the PID of process to kill it" 
+	read ill
+	kill $ill;;
+esac ;;
+2) df -h;;
+
+3)
+	echo "1)Print current user"
+	echo "2)Print all users"
+	echo "3)Show hostname"
+
+	read ch
+	case $ch in
+		1)whoami;;
+		2)who;;
+		3)hostname;;
+	esac ;;	
+4)
+	echo "1)View syslog"
+	echo "2)View authlog"
+	echo "3)View live monitor log"
+
+	read ps
+	case $ps in
+		1)cat /var/log/syslog | more;;
+		2)cat /var/log/auth.log | more;;
+		3)echo "Please enter a log name" 
+			read log
+			tail -f /var/log/$log;;
+	esac ;;	
+
+5) echo "Enter the name of the directory path to be backed up"
+	read path
+
+	cp -r "$path" backup_directory
+	;;
+6) echo "Generating report..."
+	sleep 3 
+	echo "System report" > report.txt
+	date >> report.txt
+	free -h >> report.txt
+
+	echo "Report generated"
+	;;
+
+7) echo "Exiting ..."
+	exit 0 ;;
+	*) echo "Please try again"
+	;;
+esac 	
+done
+
