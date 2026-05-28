@@ -1,4 +1,4 @@
-nux Ops Toolkit
+Linux Ops Toolkit
 
 A Dockerized Linux menu-driven toolkit built with Bash.
 
